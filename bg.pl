@@ -1,6 +1,44 @@
 #!/usr/bin/perl
+#
+# bg.pl - simulate progression of blood types
+#
+# Copyright (c) 2014 by Nils Magnus (magnus@linuxtag.org)
+#
+# This work is based on thoughts and data described in
+# the Wikipedia lemma
+#
+# http://de.wikipedia.org/wiki/AB0-System#Vererbung
+#
 
 use strict;
+
+#
+# Configure the start distributions:
+#
+
+my $deutsch = {
+  O  => 0.41,
+  A  => 0.43,
+  B  => 0.11,
+  AB => 0.05
+};
+
+my $aborigines = {
+  O  => 0.61,
+  A  => 0.39,
+  B  => 0.0,
+  AB => 0.0
+};
+
+#
+# Actually simulate the progression:
+#
+simulate("Deutsch",    $deutsch,    90);
+simulate("Aborigines", $aborigines, 90);
+
+#
+# This is the data from the Wikipedia lemma:
+#
 
 my $t = {
   AB_A =>  { A => 5000, B => 1250, AB => 3750, O => 0 },
@@ -21,30 +59,9 @@ my $t = {
   O_O =>   { A => 0,    B => 0,    AB => 0,    O => 10000 }
 };
 
-my $deutsch = {
-  O  => 0.41,
-  A  => 0.43,
-  B  => 0.11,
-  AB => 0.05
-};
-
-my $aborigines = {
-  O  => 0.61,
-  A  => 0.39,
-  B  => 0.0,
-  AB => 0.0
-};
-
-my $peruaner = {
-  O  => 0.00,
-  A  => 0.00,
-  B  => 0.00,
-  AB => 1.00
-};
-
-#simulate("Deutsch",    $deutsch,    90);
-#simulate("Aborigines", $aborigines, 90);
-simulate("Peruaner",   $peruaner,   330);
+#
+# Simulation functions:
+#
 
 sub simulate() {
    my $desc = shift;
@@ -108,6 +125,4 @@ sub generation() {
       }
    }
    return $next;
-#   use Data::Dumper;
-#   print Dumper($next);
 }
