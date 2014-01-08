@@ -31,12 +31,6 @@ my $aborigines = {
 };
 
 #
-# Actually simulate the progression:
-#
-simulate("Deutsch",    $deutsch,    90);
-simulate("Aborigines", $aborigines, 90);
-
-#
 # This is the data from the Wikipedia lemma:
 #
 
@@ -58,6 +52,12 @@ my $t = {
   O_B =>   { A => 0,    B => 7500, AB => 0,    O => 2500 }, 
   O_O =>   { A => 0,    B => 0,    AB => 0,    O => 10000 }
 };
+
+#
+# Actually simulate the progression:
+#
+simulate("Deutsch",    $deutsch,    90);
+simulate("Aborigines", $aborigines, 90);
 
 #
 # Simulation functions:
